@@ -75,14 +75,13 @@ for (a in 1:length(sp_names)){
   # Read your table of occurrence records
   
   occurrence_records <- sp %>%
-    filter(species == paste0(sp_names[a])) %>%
-    select(species, lon, lat)
+    filter(species == paste0(sp_names[a]))
   
   # Number of occurrences to perform pseudoabsence sampling
  
   if (nrow(occurrence_records) < n_min){ ##Will not analyze species with less than n_min occurrences
     print('species has less than 15 records and will not be analyzed')
-    target_dir = paste0("./ENM/outputs/", sp_names[a], "/")
+    target_dir = paste0("./outputs/", sp_names[a], "/")
     dir.create( target_dir )
     write(format('species has less than 15 records and will not be analyzed'), file=paste(target_dir, 'STOP.txt', sep=""))
     next
